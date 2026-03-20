@@ -17,8 +17,12 @@ public class TopFiveDestinationList {
 class TopDestinationListFrame extends JFrame {
     private DefaultListModel listModel;
 
+    /**
+     * 
+     */
     public TopDestinationListFrame() {
         super("Top Five Destination List");
+    	super.setSize(600, 1000);
 
         setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
         setSize(900, 750);
@@ -27,7 +31,7 @@ class TopDestinationListFrame extends JFrame {
 
 
         //Make updates to your top 5 list below. Import the new image files to resources directory.
-        addDestinationNameAndPicture("1. Kyoto is a city of temples, history and refined cuisine. Kaiseki, the Japanese art of haute dining, is perfected here with multi course seasonal meals that feel almost spiritual. But there is more to Kyoto than expensive meals, with matcha sweets, tofu dishes and yuba (tofu skin) making appearances in markets and casual restaurants. Kyoto is one of those Japanese food cities where even snacks have a ceremonial feel.", resize("/resources/kyoto.jpg"));
+        addDestinationNameAndPicture("1. Kyoto a city of temples with refined cuisine. Kaiseki, the Japanese art of haute dining, perfected here with multi course seasonal meals that feel almost spiritual. But there is more to Kyoto than expensive meals, with matcha sweets, tofu dishes and yuba (tofu skin) making appearances in markets and casual restaurants. Kyoto is one of those Japanese food cities where even snacks have a ceremonial feel.", resize("/resources/kyoto.jpg"));
         addDestinationNameAndPicture("2. Hiroshima is a city that rebuilt itself after tragedy and has put its own twist on Japanese food culture. The star of the show here is Hiroshima style okonomiyaki, a layered pancake of noodles, cabbage, pork and sauce that is cooked in front of you on a hotplate. This is street food theatre at its best, and one of the true icons of Japanese food cities.", resize("/resources/hiroshima.jpg"));
         addDestinationNameAndPicture("3.Potong is located in a generations-old five-storey building that housed the family’s Chinese herbal medicine business from 1910. Restored over two and a half years in a major architectural project, the site now houses late-night cocktail haven Opium Bar on its fourth and fifth floors, the main dining room on the second floor, and on the third, an original room filled with hand-painted tiger drawings. Soon, the former first-floor apothecary will be home to Sino House: a ‘funky Thai-Chinese’ restaurant with live music.", resize("/resources/potong_bangkok.jpg"));
         addDestinationNameAndPicture("4. Copenhagen’s Alchemist is redefining what it means to dine at the best restaurants in the world by creating an experience that transcends food. Chef Rasmus Munk describes his approach as “holistic cuisine,” blending gastronomy, science, art, and social commentary. Guests enter a vast dome where immersive visuals, sounds, and lighting accompany a tasting menu that can extend over 50 courses. The result is a sensory journey unlike anything else on the planet.", resize("/resources/alchemist.jpg"));
@@ -40,6 +44,13 @@ class TopDestinationListFrame extends JFrame {
 
         list.setCellRenderer(renderer);
 
+        // Building a header to add it into the top NORTH
+        // Building header style tag to center with h1
+        final String html = "<html><body style='h1 {text-align: center;}'>%1s";
+        String header = String.format(html, "Test Test this spot here");
+        JLabel nameLabel = new JLabel(header);
+
+        getContentPane().add(nameLabel, BorderLayout.NORTH);
         getContentPane().add(scrollPane, BorderLayout.CENTER);
     }
 
@@ -48,6 +59,7 @@ class TopDestinationListFrame extends JFrame {
         listModel.addElement(tai);
     }
 	public ImageIcon resize(String img) {
+		// This one sets all the images to the same size so theres no odd angles
     	ImageIcon imageIcon = new ImageIcon(getClass().getResource(img)); // load the image to a imageIcon
     	Image image = imageIcon.getImage(); // transform it 
     	Image newimg = image.getScaledInstance(120, 120,  java.awt.Image.SCALE_SMOOTH); // scale it the smooth way  
@@ -60,6 +72,7 @@ class TopDestinationListFrame extends JFrame {
 class TextAndIcon {
     private String text;
     private Icon icon;
+    // Adding in word wrap with simple html wrapping
     final String html = "<html><body style='width: %1spx'>%1s";
 
     public TextAndIcon(String text, Icon icon) {

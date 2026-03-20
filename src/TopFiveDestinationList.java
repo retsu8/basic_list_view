@@ -30,7 +30,7 @@ class TopDestinationListFrame extends JFrame {
         addDestinationNameAndPicture("1. Kyoto is a city of temples, history and refined cuisine. Kaiseki, the Japanese art of haute dining, is perfected here with multi course seasonal meals that feel almost spiritual. But there is more to Kyoto than expensive meals, with matcha sweets, tofu dishes and yuba (tofu skin) making appearances in markets and casual restaurants. Kyoto is one of those Japanese food cities where even snacks have a ceremonial feel.", resize("/resources/kyoto.jpg"));
         addDestinationNameAndPicture("2. Hiroshima is a city that rebuilt itself after tragedy and has put its own twist on Japanese food culture. The star of the show here is Hiroshima style okonomiyaki, a layered pancake of noodles, cabbage, pork and sauce that is cooked in front of you on a hotplate. This is street food theatre at its best, and one of the true icons of Japanese food cities.", resize("/resources/hiroshima.jpg"));
         addDestinationNameAndPicture("3.Potong is located in a generations-old five-storey building that housed the family’s Chinese herbal medicine business from 1910. Restored over two and a half years in a major architectural project, the site now houses late-night cocktail haven Opium Bar on its fourth and fifth floors, the main dining room on the second floor, and on the third, an original room filled with hand-painted tiger drawings. Soon, the former first-floor apothecary will be home to Sino House: a ‘funky Thai-Chinese’ restaurant with live music.", resize("/resources/potong_bangkok.jpg"));
-        addDestinationNameAndPicture("4. Copenhagen’s Alchemist is redefining what it means to dine at the best restaurants in the world by creating an experience that transcends food. Chef Rasmus Munk describes his approach as “holistic cuisine,” blending gastronomy, science, art, and social commentary. Guests enter a vast dome where immersive visuals, sounds, and lighting accompany a tasting menu that can extend over 50 courses. The result is a sensory journey unlike anything else on the planet.", new ImageIcon(getClass().getResource("/resources/alchemist.jpg")));
+        addDestinationNameAndPicture("4. Copenhagen’s Alchemist is redefining what it means to dine at the best restaurants in the world by creating an experience that transcends food. Chef Rasmus Munk describes his approach as “holistic cuisine,” blending gastronomy, science, art, and social commentary. Guests enter a vast dome where immersive visuals, sounds, and lighting accompany a tasting menu that can extend over 50 courses. The result is a sensory journey unlike anything else on the planet.", resize("/resources/alchemist.jpg"));
         addDestinationNameAndPicture("5. : New Orleans has always had a rich culinary history, with influences spanning French, Spanish, Vietnamese, African and more. The range of exceptional dining experiences – from the elegant, iconic Antoine’s to a neighbourhood po-boy joint like Parkway Bakery & Tavern – make this city unique. Try traditional dishes like shrimp Creole, jambalaya and red beans and rice at places all around town, or check out newer, award-winning restaurants combining Louisiana flavors with the likes of Senegalese (Dakar), Mexican (Acamaya) and Indian (Saffron).", resize("/resources/new_orleans.jpg"));
         
         JList list = new JList(listModel);
@@ -60,6 +60,7 @@ class TopDestinationListFrame extends JFrame {
 class TextAndIcon {
     private String text;
     private Icon icon;
+    final String html = "<html><body style='width: %1spx'>%1s";
 
     public TextAndIcon(String text, Icon icon) {
         this.text = text;
@@ -67,7 +68,7 @@ class TextAndIcon {
     }
 
     public String getText() {
-        return text;
+        return  String.format(html, 600, text);
     }
 
     public Icon getIcon() {
@@ -75,6 +76,7 @@ class TextAndIcon {
     }
 
     public void setText(String text) {
+    	// Wrapping text with html for better looks.
         this.text = text;
     }
 

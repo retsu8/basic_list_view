@@ -22,7 +22,6 @@ class TopDestinationListFrame extends JFrame {
      */
     public TopDestinationListFrame() {
         super("Top Five Destination List");
-    	super.setSize(600, 1000);
 
         setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
         setSize(900, 750);
@@ -43,12 +42,13 @@ class TopDestinationListFrame extends JFrame {
         TextAndIconListCellRenderer renderer = new TextAndIconListCellRenderer(2);
 
         list.setCellRenderer(renderer);
-
+        
+        // Setting the width and height
+        
         // Building a header to add it into the top NORTH
         // Building header style tag to center with h1
-        final String html = "<html><body style='h1 {text-align: center;}'>%1s";
-        String header = String.format(html, "Test Test this spot here");
-        JLabel nameLabel = new JLabel(header);
+        String header = String.format("Top Five Locations");
+        JLabel nameLabel = new JLabel(header, SwingConstants.CENTER);
 
         getContentPane().add(nameLabel, BorderLayout.NORTH);
         getContentPane().add(scrollPane, BorderLayout.CENTER);
@@ -62,7 +62,7 @@ class TopDestinationListFrame extends JFrame {
 		// This one sets all the images to the same size so theres no odd angles
     	ImageIcon imageIcon = new ImageIcon(getClass().getResource(img)); // load the image to a imageIcon
     	Image image = imageIcon.getImage(); // transform it 
-    	Image newimg = image.getScaledInstance(120, 120,  java.awt.Image.SCALE_SMOOTH); // scale it the smooth way  
+    	Image newimg = image.getScaledInstance(360, 360,  java.awt.Image.SCALE_SMOOTH); // scale it the smooth way  
     	imageIcon = new ImageIcon(newimg);  // transform it back
     	return imageIcon;
 	}
@@ -81,7 +81,7 @@ class TextAndIcon {
     }
 
     public String getText() {
-        return  String.format(html, 600, text);
+        return  String.format(html, 900, text);
     }
 
     public Icon getIcon() {
@@ -145,7 +145,8 @@ class TextAndIconListCellRenderer extends JLabel implements ListCellRenderer {
         setBorder(BorderFactory.createCompoundBorder(outsideBorder, insideBorder));
         setComponentOrientation(list.getComponentOrientation());
         setEnabled(list.isEnabled());
-        setFont(list.getFont());
+        //setFont(list.getFont());
+        setFont(new Font("Serif", Font.PLAIN, 22));
 
         return this;
     }
